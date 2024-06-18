@@ -10,8 +10,9 @@ const axiosApi = axios.create({
     baseURL: 'http://localhost:8000/usuario'
 })
 
-export const usuarioGet= async () => {
-    return await axiosApi.get('/user/');
+export const usuarioGet = async () => {
+  return await axiosApi.get('/user/')
+    .then((response) => { return response.data.user });
 }
 
 export const usuarioRegister = async (usuario) => {

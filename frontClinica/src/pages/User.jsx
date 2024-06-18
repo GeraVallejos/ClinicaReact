@@ -1,9 +1,10 @@
+import CurrentUser from "../components/CurrentUser"
 
 
 
 const User = () => {
   return (
-    <div>User</div>
+    <CurrentUser />
   )
 }
 

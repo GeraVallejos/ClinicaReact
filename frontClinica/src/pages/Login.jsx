@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
-import { submitLogin } from '../api/usuario.api';
-import { useState} from 'react';
+import { submitLogin, usuarioGet } from '../api/usuario.api';
+import { useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -16,7 +16,8 @@ const userLogin = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     submitLogin(username, password);
     navigate('/user');
   }
