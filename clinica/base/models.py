@@ -17,7 +17,7 @@ class Usuario(AbstractUser):
         return self.username
     
 class Producto(models.Model):
-    usuario = models.CharField(AbstractUser, max_length = 50)
+    usuario = models.ForeignKey(Usuario, max_length = 50, related_name='usuario_id', on_delete=models.CASCADE)
     codigo = models.CharField(max_length = 8, null=True, blank=True)
     nombre = models.CharField(max_length = 200, null=True, blank=True)
     unidad = models.CharField(max_length = 20)
@@ -35,8 +35,17 @@ class Producto(models.Model):
 
 
     def __str__(self):
-    
         return self.nombre
     
     class Meta:
         ordering = ['nombre']
+
+class Inventario(models.Model):
+    usuario = models.ForeignKey(Usuario, max_length = 50, related_name='usuario_id_inv', on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, max_length = 50, related_name='producto', on_delete=models.CASCADE)
+    cantidad_inventario = models.IntegerField(null=True, blank=True)
+    fecha_inventario = models.DateTimeField(auto_now_add=True, blank=True)
+    observacion = models.CharField(max_length = 500)
+
+    def __str__(self):
+        return self.producto

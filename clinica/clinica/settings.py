@@ -133,13 +133,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Cors authorizations
 CORS_ALLOWED_ORIGINS = [
-    
+    'http://localhost:5173'
 ]
 
 AUTH_USER_MODEL = "base.Usuario"
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
